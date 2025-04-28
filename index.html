@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        th, td {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-left: 1200px;
+        }
+
+        tr>th:last-child, tr>td:last-child {
+            border-right: 1px solid black;
+        }
+
+        tr>th:first-child, tr>td:first-child {
+            border-left: 1px solid black;
+        }
+
+        table {
+            margin-left: 700px;
+            width: 60%;
+            border-collapse: collapse;
+        }
+
+        .score {
+            font-size: 50px;
+            font-weight: bold;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Best score</h1>
+    <div class="score">Your Score:</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Time</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody id="userTable">
+        </tbody>
+    </table>
+
+    <script>
+        let users = [
+            { name: "Enerel", score: 104, time: 60 },
+            { name: "Khulangoo", score: 209, time: 20 },
+            { name: "Maral", score: 506, time: 21 },
+            { name: "Myagmar", score: 525, time: 58 }
+        ];
+
+       
+        users.sort((a, b) => {
+            if (b.score !== a.score) {
+                return b.score - a.score;
+            } else {
+                return a.time - b.time;
+            }
+        });
+
+        
+        const tableBody = document.getElementById("userTable");
+
+        users.forEach((user, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td><img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png" width="86" height="68.25"></td>
+                <td>${user.name}</td>
+                <td>${user.time}</td>
+                <td>${user.score}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
